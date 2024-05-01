@@ -1,13 +1,12 @@
 import "~/styles/globals.css";
+import "@uploadthing/react/styles.css";
 
 import { Inter } from "next/font/google";
-import {
-  ClerkProvider,
-  SignInButton,
-  SignedIn,
-  SignedOut,
-  UserButton,
-} from "@clerk/nextjs";
+import { ClerkProvider } from "@clerk/nextjs";
+import { TopNav } from "./_components/top-nav";
+import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
+import { extractRouterConfig } from "uploadthing/server";
+import { ourFileRouter } from "./api/uploadthing/core";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -20,24 +19,6 @@ export const metadata = {
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
-function TopNav() {
-  return (
-    <nav className="flex w-full items-center justify-between border-b p-4 text-xl font-semibold">
-      <div>Gallery</div>
-
-      <div>
-        <SignedOut>
-          <SignInButton />
-        </SignedOut>
-
-        <SignedIn>
-          <UserButton />
-        </SignedIn>
-      </div>
-    </nav>
-  );
-}
-
 export default function RootLayout({
   children,
 }: {
@@ -46,6 +27,7 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
+        <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
         <body className={`font-sans ${inter.variable} flex flex-col gap-4`}>
           <TopNav />
           {children}
