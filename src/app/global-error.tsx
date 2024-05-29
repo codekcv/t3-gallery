@@ -12,7 +12,7 @@ export default function GlobalError(props: Readonly<{ error: unknown }>) {
   return (
     <html>
       <body>
-        <Error statusCode={500} title="Error"/>
+        <Error statusCode={500} title="Error" />
       </body>
     </html>
   );
