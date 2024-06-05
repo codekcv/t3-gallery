@@ -43,6 +43,8 @@ Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/ver
 - [x] Use Next/Image component
 - [x] Error management (sentry)
 - [x] Routing/image page (parallel route)
+- [x] Update upload button to be less cringe
+- [ ] Initialize ShadCN UI, toasts.
 - [ ] Delete button (server actions)
 - [ ] Analytics (posthog)
 - [ ] Ratelimiting (upstash)
